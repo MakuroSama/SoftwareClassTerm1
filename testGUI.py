@@ -1,6 +1,29 @@
 from tkinter import *
 from tkinter import ttk
 
+def calculate():
+    result = 0
+    EntryTotal.delete(0,END)
+    
+    num1 = Entry1.get()
+    num2 = Entry2.get()
+    if str(v.get()) == "1":
+        result = int(num1) + int(num2)
+        EntryTotal.insert(0,str(result))
+    elif str(v.get()) == "2":
+        result = int(num1) - int(num2)
+        EntryTotal.insert(0,str(result))
+    elif str(v.get()) == "3":
+        result = int(num1) * int(num2)
+        EntryTotal.insert(0,str(result))
+    elif str(v.get()) == "4":
+        result = int(num1) / int(num2)
+        EntryTotal.insert(0,str(result))
+
+def clear():
+    EntryTotal.delete(0,END)
+    Entry1.delete(0,END)
+    Entry2.delete(0,END)
 mainFrm = Tk()
 mainFrm.title("System register")
 
@@ -22,8 +45,8 @@ Entry2.grid(column=1,row=3,sticky="NE")
 EntryTotal = ttk.Entry(LabelFrame1,width=25)
 EntryTotal.grid(column=1,row=4,sticky="NE")
 
-ButtonClick = ttk.Button(LabelFrame1, text="Cal",width=10) #command= calculate())
-ButtonClear = ttk.Button(LabelFrame1, text="Clear",width=10) #command= clear())
+ButtonClick = ttk.Button(LabelFrame1, text="Cal",width=10,command= calculate)
+ButtonClear = ttk.Button(LabelFrame1, text="Clear",width=10,command= clear)
 
 ButtonClick.grid(column=0, row=5, padx=10, sticky="NE")
 ButtonClear.grid(column=1, row=5, padx=10, sticky="NE")
@@ -39,7 +62,7 @@ values = {
     "divide" : "4"
 }
 
-for(text, values) in values.items():
-    Radiobutton(LabelFrame2,text=text,variable=v,value=values).pack(side=TOP(), ipady=4)
+for(text, valuess) in values.items():
+    Radiobutton(LabelFrame2,text=text,variable=v,value=valuess).pack(side=TOP, ipady=4)
 
 mainFrm.mainloop()
